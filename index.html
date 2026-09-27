@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#8064a2"
+    >
+
+    <meta
+        name="description"
+        content="Who Put That There? — A fast and fun hidden-object game."
+    >
+
+    <title>Who Put That There?</title>
+
+    <link
+        rel="icon"
+        href="./favicon.png?v=1"
+        type="image/png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <!-- ================================
+         APP
+    ================================= -->
+
+    <div class="app">
+
+        <!-- HEADER -->
+
+        <header class="top-bar">
+
+            <div class="brand">
+                <div class="brand-icon">🧹</div>
+
+                <div>
+                    <h1>Who Put That There?</h1>
+                    <p>Find what doesn't belong.</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+
+                <button
+                    id="soundButton"
+                    class="icon-button"
+                    type="button"
+                    aria-label="Toggle sound"
+                    title="Toggle sound"
+                >
+                    🔊
+                </button>
+
+                <button
+                    id="themeButton"
+                    class="icon-button"
+                    type="button"
+                    aria-label="Toggle dark mode"
+                    title="Toggle dark mode"
+                >
+                    🌙
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================================
+             START SCREEN
+        ================================= -->
+
+        <main id="startScreen" class="screen active">
+
+            <section class="welcome-card">
+
+                <div class="welcome-illustration">
+                    🏠
+                </div>
+
+                <h2>Who Put That There?</h2>
+
+                <p class="intro-text">
+                    Something is out of place.
+                    Can you find everything before time runs out?
+                </p>
+
+                <div class="game-info">
+
+                    <div class="info-box">
+                        <span class="info-icon">⏱️</span>
+                        <strong>60 seconds</strong>
+                        <small>per game</small>
+                    </div>
+
+                    <div class="info-box">
+                        <span class="info-icon">🔎</span>
+                        <strong>Find the odd ones</strong>
+                        <small>in every room</small>
+                    </div>
+
+                    <div class="info-box">
+                        <span class="info-icon">🏆</span>
+                        <strong>Beat your score</strong>
+                        <small>every time</small>
+                    </div>
+
+                </div>
+
+                <button
+                    id="startButton"
+                    class="primary-button"
+                    type="button"
+                >
+                    Start Game
+                </button>
+
+                <button
+                    id="howToPlayButton"
+                    class="text-button"
+                    type="button"
+                >
+                    How to play
+                </button>
+
+                <div class="best-score-display">
+                    Best Score:
+                    <strong id="startBestScore">0</strong>
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ================================
+             GAME SCREEN
+        ================================= -->
+
+        <main id="gameScreen" class="screen">
+
+            <!-- GAME HUD -->
+
+            <section class="game-hud">
+
+                <div class="hud-card">
+
+                    <span class="hud-label">
+                        SCORE
+                    </span>
+
+                    <strong id="score">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="hud-card combo-card">
+
+                    <span class="hud-label">
+                        COMBO
+                    </span>
+
+                    <strong id="combo">
+                        0
+                    </strong>
+
+                </div>
+
+                <div
+                    id="timerCard"
+                    class="hud-card timer-card"
+                >
+
+                    <span class="hud-label">
+                        TIME
+                    </span>
+
+                    <strong id="timer">
+                        60
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <!-- ROOM INFO -->
+
+            <section class="room-header">
+
+                <div>
+
+                    <span class="room-label">
+                        YOU ARE IN
+                    </span>
+
+                    <h2 id="roomName">
+                        Bedroom
+                    </h2>
+
+                </div>
+
+                <div class="room-progress">
+                    <span id="roomProgress">
+                        Room 1
+                    </span>
+                </div>
+
+            </section>
+
+
+            <!-- GAME ROOM -->
+
+            <section
+                id="gameRoom"
+                class="game-room"
+                aria-label="Game room"
+            >
+
+                <!--
+                    JavaScript places objects here.
+                -->
+
+            </section>
+
+
+            <!-- GAME MESSAGE -->
+
+            <div
+                id="gameMessage"
+                class="game-message"
+                aria-live="polite"
+            ></div>
+
+        </main>
+
+
+        <!-- ================================
+             GAME OVER SCREEN
+        ================================= -->
+
+        <main id="gameOverScreen" class="screen">
+
+            <section class="game-over-card">
+
+                <div class="game-over-icon">
+                    🧹
+                </div>
+
+                <span class="small-heading">
+                    TIME'S UP!
+                </span>
+
+                <h2>Room Cleaning Complete</h2>
+
+                <p>
+                    You found quite a few things that didn't belong.
+                </p>
+
+                <div class="final-score">
+
+                    <span>Your Score</span>
+
+                    <strong id="finalScore">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="score-details">
+
+                    <div>
+                        <span>Best Score</span>
+                        <strong id="finalBestScore">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Objects Found</span>
+                        <strong id="finalFound">0</strong>
+                    </div>
+
+                    <div>
+                        <span>Rooms Visited</span>
+                        <strong id="finalRooms">0</strong>
+                    </div>
+
+                </div>
+
+                <div
+                    id="newBestMessage"
+                    class="new-best-message hidden"
+                >
+                    🏆 NEW BEST SCORE!
+                </div>
+
+                <button
+                    id="playAgainButton"
+                    class="primary-button"
+                    type="button"
+                >
+                    Play Again
+                </button>
+
+                <button
+                    id="homeButton"
+                    class="text-button"
+                    type="button"
+                >
+                    Back to Home
+                </button>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- ================================
+         HOW TO PLAY MODAL
+    ================================= -->
+
+    <div
+        id="howToPlayModal"
+        class="modal-overlay"
+        aria-hidden="true"
+    >
+
+        <div
+            class="modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="howToPlayTitle"
+        >
+
+            <button
+                id="closeModalButton"
+                class="modal-close"
+                type="button"
+                aria-label="Close"
+            >
+                ×
+            </button>
+
+            <h2 id="howToPlayTitle">
+                How to Play
+            </h2>
+
+            <div class="instructions">
+
+                <div class="instruction">
+                    <span>1</span>
+                    <p>
+                        Look around the room and find
+                        objects that don't belong.
+                    </p>
+                </div>
+
+                <div class="instruction">
+                    <span>2</span>
+                    <p>
+                        Click the object you think is out of place.
+                    </p>
+                </div>
+
+                <div class="instruction">
+                    <span>3</span>
+                    <p>
+                        Correct answer:
+                        <strong>+1 point</strong>
+                    </p>
+                </div>
+
+                <div class="instruction">
+                    <span>4</span>
+                    <p>
+                        Wrong answer:
+                        <strong>-2 points</strong>
+                    </p>
+                </div>
+
+                <div class="instruction">
+                    <span>5</span>
+                    <p>
+                        You have exactly
+                        <strong>60 seconds.</strong>
+                    </p>
+                </div>
+
+                <div class="instruction">
+                    <span>6</span>
+                    <p>
+                        Find everything you can
+                        before the clock reaches zero!
+                    </p>
+                </div>
+
+            </div>
+
+            <button
+                id="modalStartButton"
+                class="primary-button"
+                type="button"
+            >
+                Got It!
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         TOAST
+    ================================= -->
+
+    <div
+        id="toast"
+        class="toast"
+        aria-live="polite"
+    ></div>
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
